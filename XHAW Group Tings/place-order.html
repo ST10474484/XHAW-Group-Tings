@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Order</title>
+  <style>
+    body { font-family: Arial; background: #FAF3E0; margin: 0; }
+    header, footer { background: #4E342E; color: white; text-align: center; padding: 1rem; }
+    nav { background: #6D8B74; text-align: center; padding: 0.5rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    .container { max-width: 600px; margin: auto; padding: 2rem 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+    input, select { width: 100%; padding: 0.6rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #388E3C; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+  </style>
+</head>
+<body>
+  <header><h1>Place Your Application</h1></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="six-month.html">Six-Month Courses</a>
+    <a href="six-week.html">Six-Week Courses</a>
+  </nav>
+  <div class="container">
+    <form>
+      <label for="course">Select Course:</label>
+      <select id="course" name="course">
+        <option>First Aid</option>
+        <option>Sewing</option>
+        <option>Life Skills</option>
+        <option>Landscaping</option>
+        <option>Child Minding</option>
+        <option>Cooking</option>
+        <option>Garden Maintenance</option>
+      </select>
+
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="address">Physical Address:</label>
+      <input type="text" id="address" name="address" required />
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+  <footer>&copy; 2025 Empowering the Nation</footer>
+</body>
+</html>

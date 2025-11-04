@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fee Calculator</title>
+  <style>
+    body { font-family: Arial; background: #FAF3E0; margin: 0; }
+    header, footer { background: #4E342E; color: white; text-align: center; padding: 1rem; }
+    nav { background: #6D8B74; text-align: center; padding: 0.5rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    .container { max-width: 600px; margin: auto; padding: 2rem 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+    input { width: 100%; padding: 0.6rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #388E3C; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+    #result { margin-top: 1rem; font-size: 1.1rem; font-weight: bold; color: #D84315; }
+  </style>
+</head>
+<body>
+  <header><h1>Fee Calculator</h1></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="six-month.html">Six-Month Courses</a>
+    <a href="six-week.html">Six-Week Courses</a>
+  </nav>
+  <div class="container">
+    <label for="courseCount">Long Courses (R1500 each):</label>
+    <input type="number" id="courseCount" min="0" max="10" />
+
+    <label for="shortCourseCount">Short Courses (R750 each):</label>
+    <input type="number" id="shortCourseCount" min="0" max="10" />
+
+    <button onclick="calculateFees()">Calculate</button>
+    <p id="result"></p>
+  </div>
+  <footer>&copy; 2025 Empowering the Nation</footer>
+
+  <script>
+    function applyDiscount(amount, count) {
+      let rate = 0;
+      if (count === 2) rate = 0.05;
+      else if (count === 3) rate = 0.10;
+      else if (count > 3) rate = 0.15;
+      return { final: amount * (1 - rate), rate };
+    }
+
+    function calculateFees() {
+      const longCount = parseInt(document.getElementById("courseCount").value) || 0;
+      const shortCount = parseInt(document.getElementById("shortCourseCount").value) || 0;
+
+      if (longCount === 0 && shortCount === 0) {
+        document.getElementById("result").innerText = "Select at least one course.";
+        return;
+      }
+
+      const longBase = longCount * 1500;
+      const shortBase = shortCount * 750;
+
+      const longDisc = applyDiscount(longBase, longCount);
+      const shortDisc = applyDiscount(shortBase, shortCount);
+
+      const subtotal = longDisc.final + shortDisc.final;
+      const totalWithVAT = subtotal * 1.15;
+
+      document.getElementById("result").innerText =
+        `Total Fee (incl. VAT): R${totalWithVAT.toFixed(2)}
+        \nLong courses discount: ${(longDisc.rate*100)}%
+        \nShort courses discount: ${(shortDisc.rate*100)}%`;
+    }
+  </script>
+</body>
+</html>
